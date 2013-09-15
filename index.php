@@ -61,31 +61,31 @@
 		            echo $icon_output;
 
 		            // Display a link to the site
-		            $displayname = $project;
+		            $display_name = $project;
 		            if ( array_key_exists( $project, $site_options ) ) {
 		            	if ( is_array( $site_options[$project] ) )
-		            		$displayname = array_key_exists( 'displayname', $site_options[$project] ) ? $site_options[$project]['displayname'] : $project;
+		            		$display_name = array_key_exists( 'display_name', $site_options[$project] ) ? $site_options[$project]['display_name'] : $project;
 		            	else
-		            		$displayname = $site_options[$project];
+		            		$display_name = $site_options[$project];
 		            }
-		            $projecturl = array_key_exists('serveralias', $site_options[$project]) ? $site_options[$project]['serveralias'] : '../'.$project;
-		            //printf( '<a class="site" href="%1$s">%2$s</a>', $siteroot, $displayname );
-		            printf( '<a class="site" href="%1$s">%2$s</a>', $projecturl, $displayname );
+		            $projecturl = array_key_exists('vhost_url', $site_options[$project]) ? $site_options[$project]['vhost_url'] : '../'.$project;
+		            //printf( '<a class="site" href="%1$s">%2$s</a>', $siteroot, $display_name );
+		            printf( '<a class="site" href="%1$s">%2$s</a>', $projecturl, $display_name );
 
 
 					// Display an icon with a link to the admin area
-		            $adminurl = '';
+		            $admin_url = '';
 					// We'll start by checking if the site looks like it's a WordPress site
 		            if ( is_dir( $file . '/wp-admin' ) )
-		            	$adminurl = sprintf( 'http://%1$s/wp-admin', $siteroot );
+		            	$admin_url = sprintf( 'http://%1$s/wp-admin', $siteroot );
 
-					// If the user has defined an adminurl for the project we'll use that instead
-		            if ( is_array( $site_options[$project] ) && array_key_exists( 'adminurl', $site_options[$project] ) )
-		            	$adminurl = $site_options[$project]['adminurl'];
+					// If the user has defined an admin_url for the project we'll use that instead
+		            if ( is_array( $site_options[$project] ) && array_key_exists( 'admin_url', $site_options[$project] ) )
+		            	$admin_url = $site_options[$project]['admin_url'];
 
 		            // If there's an admin url then we'll show it - the icon will depend on whether it looks like WP or not
-		            if ( ! empty( $adminurl ) )
-		            	printf( '<a class="%2$s icon" href="%1$s">Admin</a>', $adminurl, is_dir( $file . '/wp-admin' ) ? 'wp' : 'admin' );
+		            if ( ! empty( $admin_url ) )
+		            	printf( '<a class="%2$s icon" href="%1$s">Admin</a>', $admin_url, is_dir( $file . '/wp-admin' ) ? 'wp' : 'admin' );
 
 
 		            echo '</li>';
