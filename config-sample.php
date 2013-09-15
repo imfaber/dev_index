@@ -56,7 +56,7 @@ $site_options = array(
 	'dir_name' => array(
 		'display_name' => 'display_name',
 		'admin_url' => 'http://something/admin'
-	)
+	),
 	'dir_name' => array(
 		'display_name' => 'display_name',
 		'admin_url' => 'http://display_name.local/admin/',
